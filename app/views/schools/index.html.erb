@@ -1,0 +1,19 @@
+<h1>Listing schools</h1>
+
+    <% @schools.each do |school| %>
+        <div><%= school.name %></div>
+        <div><%= school.address %></div>
+        <div><%= school.city %></div>
+        <div><%= school.zip %></div>
+        <div><%= school.county %></div>
+        <div><%= school.phone_number %></div>
+        <div><%= school.url %></div>
+        <div><%= school.latitude %></div>
+        <div><%= school.longitude %></div>
+        <div><%= link_to 'Edit', edit_school_path(school) %></div>
+        <hr/>
+    <% end %>
+<br />
+
+<%= link_to 'New School', new_school_path %>
+

@@ -1,11 +1,11 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, only: [:show, :edit, :update, :destroy]
 
   def index
     @schools = School.all
   end
 
   def show
+    @school = School.find(params[:id])
   end
 
   def new
@@ -13,11 +13,17 @@ class SchoolsController < ApplicationController
   end
 
   def edit
+    @school = School.find(params[:id])
   end
 
   def create
     @school = School.new(school_params)
-
+    address_feed = school.address + " " + school.city + " " + school.state + " " + school.zip
+    latlng = Geocoder.coordinates(address_feed)
+    school.latitude  = latlng[0]
+    school.longitude = latlng[1]
+    # school.save
+    # binding.pry
     respond_to do |format|
       if @school.save
         format.html { redirect_to @school, notice: 'School was successfully created.' }
@@ -50,10 +56,6 @@ class SchoolsController < ApplicationController
   end
 
   private
-
-    def set_school
-      @school = School.find(params[:id])
-    end
 
     def school_params
       params.require(:school).permit(:name, :address, :city, :zip, :county, :phone_number, :url, :grade_level, :rating, :is_religious, :school_type, :latitude, :longitude)

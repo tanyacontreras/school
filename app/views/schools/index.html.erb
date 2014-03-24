@@ -1,4 +1,4 @@
-<h1>Listing schools</h1>
+<h1>All schools</h1>
 
     <% @schools.each do |school| %>
         <div><%= school.name %></div>
@@ -8,9 +8,13 @@
         <div><%= school.county %></div>
         <div><%= school.phone_number %></div>
         <div><%= school.url %></div>
+        <div><%= school.grade_level %></div>
+        <div><%= school.rating %></div>
+        <div><%= school.is_religious %></div>
         <div><%= school.latitude %></div>
         <div><%= school.longitude %></div>
-        <div><%= link_to 'Edit', edit_school_path(school) %></div>
+        <div><%= link_to 'Edit', edit_school_path(school) %> |
+        <%= link_to 'Show', school_path(school) %></div>        
         <hr/>
     <% end %>
 <br />

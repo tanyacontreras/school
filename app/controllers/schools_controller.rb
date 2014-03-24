@@ -1,7 +1,8 @@
 class SchoolsController < ApplicationController
 
   def index
-    @schools = School.all
+    # @schools = School.all
+    @schools = School.where(zip: params[:zip])
   end
 
   def show
@@ -18,12 +19,11 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
-    address_feed = school.address + " " + school.city + " " + school.state + " " + school.zip
+    address_feed = @school.address + ' ' + @school.city + ' ' + @school.state + ' ' + @school.zip
     latlng = Geocoder.coordinates(address_feed)
-    school.latitude  = latlng[0]
-    school.longitude = latlng[1]
-    # school.save
-    # binding.pry
+    @school.latitude  = latlng[0]
+    @school.longitude = latlng[1]
+
     respond_to do |format|
       if @school.save
         format.html { redirect_to @school, notice: 'School was successfully created.' }
@@ -36,28 +36,46 @@ class SchoolsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @school.update(school_params)
-        format.html { redirect_to @school, notice: 'School was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
-      end
+    @school = School.find(params[:id])
+    if @school.update(school_params)
+      full_address = "#{@school.address}, #{@school.city}, #{@school.state}, #{@school.zip}"
+      latlng = Geocoder.coordinates(full_address)
+      @school.latitude  = latlng[0]
+      @school.longitude = latlng[1]
+      redirect_to school_path, notice: "School was updated successfully"
+    else
+      render action: 'edit', notice: 'Please review for errors before submitting again'
     end
   end
 
+  #  def Michael
+  #   @customer = Customer.find(params[:id])
+  #   if @customer.update(customer_params)
+  #   full_address = "#{@customer.addr1}, #{@customer.addr2}, #{@customer.city}, #{@customer.state} #{@customer.zip}"
+  #   latlng = Geocoder.coordinates(full_address)
+  #   @customer.latitude = latlng[0]
+  #   @customer.longitude = latlng[1]
+  #   redirect_to customers_path, notice: 'Customer was updated successfully.'
+  #   else
+  #   render action: 'edit', notice: 'There are errors on your form.'
+  #   end
+  # end
+
   def destroy
-    @school.destroy
-    respond_to do |format|
-      format.html { redirect_to schools_url }
-      format.json { head :no_content }
+    @school = School.find(params[:id])
+    if @school.destroy
+      flash[:notice] = "The school was successfully deleted."
+      redirect_to @school
+    else 
+      flash[:error] = "The school was not deleted."
+      redirect_to @school
     end
   end
 
   private
 
     def school_params
-      params.require(:school).permit(:name, :address, :city, :zip, :county, :phone_number, :url, :grade_level, :rating, :is_religious, :school_type, :latitude, :longitude)
+      params.require(:school).permit(:name, :address, :city, :zip, :county, :state, :phone_number, :url, :grade_level, :rating, :is_religious, :school_type)
     end
+
 end

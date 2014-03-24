@@ -1,23 +1,35 @@
-<h1>All schools</h1>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6e5KCfZHZEoJLPDVUn24zM-30hir0CwM&sensor=true"></script>
 
-    <% @schools.each do |school| %>
-        <div><%= school.name %></div>
-        <div><%= school.address %></div>
-        <div><%= school.city %></div>
-        <div><%= school.zip %></div>
-        <div><%= school.county %></div>
-        <div><%= school.phone_number %></div>
-        <div><%= school.url %></div>
-        <div><%= school.grade_level %></div>
-        <div><%= school.rating %></div>
-        <div><%= school.is_religious %></div>
-        <div><%= school.latitude %></div>
-        <div><%= school.longitude %></div>
-        <div><%= link_to 'Edit', edit_school_path(school) %> |
-        <%= link_to 'Show', school_path(school) %></div>        
-        <hr/>
-    <% end %>
+<%= form_tag schools_path, :method => 'get' do  %>
+  <div><%= text_field_tag :zip, params[:zip], :placeholder => "enter zip code"%> <%= submit_tag 'Search' %></div>
+<% end %>
+
 <br />
-
-<%= link_to 'New School', new_school_path %>
+<div class="row">
+  <div class="col-lg-6 col-md-6">
+    <% if @schools.count == 0 %>
+      <div>Search Results for Zip Code: <strong><%= @schools[0].zip %></strong></div>
+    <% end %>
+  <% @schools.each do |school| %>
+      <div>ID: <%= school.id %></div>
+      <div><strong><%= school.name %></strong></div>
+      <div><%= school.address %></div>
+      <div><%= school.city %>, <%= school.state %> <%= school.zip %></div>
+      <div><%= school.county %> County</div>
+      <div><%= school.phone_number %></div>
+      <div><%= school.url %></div>
+      <div><%= school.grade_level %></div>
+      <div><%= school.rating %></div>
+      <div><%= school.is_religious %></div>
+      <div><%= school.latitude %>, <%= school.longitude %></div>
+      <div><%= link_to 'Edit', edit_school_path(school) %> |
+      <%= link_to 'Show', school_path(school) %></div> 
+      <hr/>
+  <% end %>
+  </div>
+  
+  <div class="col-lg-6 col-md-6">
+    <div id="map-canvas"></div>
+  </div>
+</div>
 

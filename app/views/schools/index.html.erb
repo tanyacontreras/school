@@ -30,25 +30,17 @@
   </div>
 </div>
  
- <div id="runThis">CLick me!!!</div>
-
 <script type="text/javascript"> 
-  $('#runThis').click(function(){
-    initialize();
-  })
   
   function initialize() {
-
     $.get(location.href, null)
       .success(function(data){
 
     var school_array = [];
 
-    // for (i=0; i < schools.length; i++){
     <% @schools.each do |school| %>
       school_array.push(new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>))
     <% end %>
-    // }
 
     var mapOptions = {
       zoom: 13,

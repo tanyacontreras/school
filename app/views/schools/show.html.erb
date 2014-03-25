@@ -19,18 +19,40 @@
 </div>
 
 <script type="text/javascript">
-     function initialize() {
-      var myLatLng = new google.maps.LatLng(<%=@school.latitude %>, <%=@school.longitude %>)
-       var mapOptions = {
-         center: myLatLng,
-         zoom: 15
-       };
-       var map = new google.maps.Map(document.getElementById("map-canvas"),
-           mapOptions);
-       var marker = new google.maps.Marker({
-        position: myLatLng,
+ function initialize() {
+
+  var school_array = []; 
+  var star = "<%= asset_path('star.png') %>";
+  var blue = "<%= asset_path('blue.png') %>";
+  var red = "<%= asset_path('red.png') %>";
+
+  <% if @school.rating >= "8" %>
+    school_array.push([new google.maps.LatLng(<%= @school.latitude %>, <%= @school.longitude %>), star]);
+  <% elsif @school.rating <= "4" %>
+    school_array.push([new google.maps.LatLng(<%= @school.latitude %>, <%= @school.longitude %>), red]);
+  <% else %>
+    school_array.push([new google.maps.LatLng(<%= @school.latitude %>, <%= @school.longitude %>), blue]);
+  <% end %>
+
+  console.log(school_array);
+
+   var mapOptions = {
+    center: (school_array[0][0]),
+     zoom: 15
+   };
+
+   var map = new google.maps.Map(document.getElementById("map-canvas"),
+       mapOptions);
+
+  for(var i=0; i < school_array.length; i++)
+    {
+      var marker = new google.maps.Marker({
+        position: school_array[i][0],
+        icon: school_array[i][1], 
+        title: "test",
         map: map
-       });
-     }
-     google.maps.event.addDomListener(window, 'load', initialize);
+      })
+    }
+ }
+ google.maps.event.addDomListener(window, 'page:change', initialize);
 </script>

@@ -7,6 +7,7 @@
 <br />
 <div class="row">
   <div class="col-lg-6 col-md-6">
+  <div><strong>School Results: <%= @schools.count %></strong></div><br />
   <% @schools.each do |school| %>
       <div>ID: <%= school.id %></div>
       <div><strong><%= school.name %></strong></div>
@@ -32,31 +33,51 @@
  
 <script type="text/javascript"> 
   
-  function initialize() {
-    $.get(location.href, null)
-      .success(function(data){
+function initialize() {
+  $.get(location.href, null)
+    .success(function(data){
 
-    var school_array = [];
+  var school_array = [];
+  var school_array_high = [];
+  var school_array_med = [];
+  var school_array_low = [];
+  var star = "<%= asset_path('star.png') %>";
+  var blue = "<%= asset_path('blue.png') %>";
+  var red = "<%= asset_path('red.png') %>";
 
-    <% @schools.each do |school| %>
-      school_array.push(new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>))
+<% if @schools.count == 0 %>
+  alert("test");
+<% else %>
+  <% @schools.each do |school| %>
+    <% if school.rating >= "8" %>
+      school_array.push([new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>), star]);
+    <% elsif school.rating <= "4" %>
+      school_array.push([new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>), red]);
+    <% else %>
+      school_array.push([new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>), blue]);
     <% end %>
+  <% end %>
+<% end %>
 
-    var mapOptions = {
-      zoom: 13,
-      center: (school_array[0])
-    }
+  console.log(school_array)
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-    for(var i=0; i < school_array.length; i++)
-      {
-        var marker = new google.maps.Marker({
-          position: school_array[i],
-          map: map
-        })
-      }
-    });
+  var mapOptions = {
+    zoom: 13, 
+    center: (school_array[0][0])
   }
-  google.maps.event.addDomListener(window, 'page:change', initialize);
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  for(var i=0; i < school_array.length; i++)
+    {
+      var marker = new google.maps.Marker({
+        position: school_array[i][0],
+        icon: school_array[i][1], 
+        title: "test",
+        map: map
+      })
+    }
+  });
+}
+  google.maps.event.addDomListener(window, 'load', initialize);
 </script>

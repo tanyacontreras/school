@@ -1,7 +1,6 @@
 class SchoolsController < ApplicationController
 
   def index
-    # @schools = School.all
     @schools = School.where(zip: params[:zip])
   end
 
@@ -47,19 +46,6 @@ class SchoolsController < ApplicationController
       render action: 'edit', notice: 'Please review for errors before submitting again'
     end
   end
-
-  #  def Michael
-  #   @customer = Customer.find(params[:id])
-  #   if @customer.update(customer_params)
-  #   full_address = "#{@customer.addr1}, #{@customer.addr2}, #{@customer.city}, #{@customer.state} #{@customer.zip}"
-  #   latlng = Geocoder.coordinates(full_address)
-  #   @customer.latitude = latlng[0]
-  #   @customer.longitude = latlng[1]
-  #   redirect_to customers_path, notice: 'Customer was updated successfully.'
-  #   else
-  #   render action: 'edit', notice: 'There are errors on your form.'
-  #   end
-  # end
 
   def destroy
     @school = School.find(params[:id])

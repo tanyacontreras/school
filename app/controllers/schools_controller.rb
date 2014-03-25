@@ -18,8 +18,8 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
-    address_feed = @school.address + ' ' + @school.city + ' ' + @school.state + ' ' + @school.zip
-    latlng = Geocoder.coordinates(address_feed)
+    full_address = "#{@school.address}, #{@school.city}, #{@school.state}, #{@school.zip}"
+    latlng = Geocoder.coordinates(full_address)
     @school.latitude  = latlng[0]
     @school.longitude = latlng[1]
 
@@ -41,9 +41,20 @@ class SchoolsController < ApplicationController
       latlng = Geocoder.coordinates(full_address)
       @school.latitude  = latlng[0]
       @school.longitude = latlng[1]
-      redirect_to school_path, notice: "School was updated successfully"
-    else
-      render action: 'edit', notice: 'Please review for errors before submitting again'
+
+      respond_to do |format|
+      if @school.save
+        format.html { redirect_to @school, notice: 'School was successfully updated.' }
+        format.json { render action: 'show', status: :created, location: @school }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @school.errors, status: :unprocessable_entity }
+      end
+    end
+
+    #   redirect_to school_path, notice: "School was updated successfully"
+    # else
+    #   render action: 'edit', notice: 'Please review for errors before submitting again'
     end
   end
 
@@ -59,9 +70,8 @@ class SchoolsController < ApplicationController
   end
 
   private
-
-    def school_params
-      params.require(:school).permit(:name, :address, :city, :zip, :county, :state, :phone_number, :url, :grade_level, :rating, :is_religious, :school_type)
-    end
+  def school_params
+    params.require(:school).permit(:name, :address, :city, :zip, :county, :state, :phone_number, :url, :grade_level, :rating, :is_religious, :school_type)
+  end
 
 end

@@ -8,7 +8,10 @@
 <div class="row">
   <div class="col-lg-6 col-md-6">
   <div><strong>School Results: <%= @schools.count %></strong></div><br />
-  <% @schools.each do |school| %>
+  <% if @schools.count == 0 %>
+    <div>Nothing found!</div>
+  <% else %>
+    <% @schools.each do |school| %>
       <div>ID: <%= school.id %></div>
       <div><strong><%= school.name %></strong></div>
       <div><%= school.address %></div>
@@ -23,6 +26,7 @@
       <div><%= link_to 'Edit', edit_school_path(school) %> |
       <%= link_to 'Show', school_path(school) %></div> 
       <hr/>
+      <% end %>
   <% end %>
   </div>
   
@@ -59,10 +63,10 @@ function initialize() {
   <% end %>
 <% end %>
 
-  console.log(school_array)
+  console.log(school_array);
 
   var mapOptions = {
-    zoom: 13, 
+    zoom: 12, 
     center: (school_array[0][0])
   }
 

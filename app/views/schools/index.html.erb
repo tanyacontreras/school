@@ -7,9 +7,6 @@
 <br />
 <div class="row">
   <div class="col-lg-6 col-md-6">
-    <% if @schools.count == 0 %>
-      <div>Search Results for Zip Code: <strong><%= @schools[0].zip %></strong></div>
-    <% end %>
   <% @schools.each do |school| %>
       <div>ID: <%= school.id %></div>
       <div><strong><%= school.name %></strong></div>
@@ -32,4 +29,42 @@
     <div id="map-canvas"></div>
   </div>
 </div>
+ 
+ <div id="runThis">CLick me!!!</div>
 
+<script type="text/javascript"> 
+  $('#runThis').click(function(){
+    initialize();
+  })
+  
+  function initialize() {
+
+    $.get(location.href, null)
+      .success(function(data){
+
+    var school_array = [];
+
+    // for (i=0; i < schools.length; i++){
+    <% @schools.each do |school| %>
+      school_array.push(new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>))
+    <% end %>
+    // }
+
+    var mapOptions = {
+      zoom: 13,
+      center: (school_array[0])
+    }
+
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    for(var i=0; i < school_array.length; i++)
+      {
+        var marker = new google.maps.Marker({
+          position: school_array[i],
+          map: map
+        })
+      }
+    });
+  }
+  google.maps.event.addDomListener(window, 'page:change', initialize);
+</script>

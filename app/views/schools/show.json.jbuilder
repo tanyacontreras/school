@@ -1,1 +1,3 @@
-json.extract! @school, :id, :name, :address, :city, :zip, :county, :phone_number, :rating, :grade_level, :url, :is_religious, :latitude, :longitude
+json.school do |json|
+  json.extract! school, :id, :name, :address, :city, :zip, :latitude, :longitude
+end

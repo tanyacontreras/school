@@ -50,11 +50,7 @@ class SchoolsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @school.errors, status: :unprocessable_entity }
       end
-    end
-
-    #   redirect_to school_path, notice: "School was updated successfully"
-    # else
-    #   render action: 'edit', notice: 'Please review for errors before submitting again'
+      end
     end
   end
 

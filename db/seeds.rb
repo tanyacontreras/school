@@ -63,14 +63,13 @@ File.open("public_schls.txt", "r") do |infile|
 		    	end
     	end
     end
-
     	# OK, let's put another document in the mix
 #    	puts do_this.inspect
-		begin
-    	School.create(do_this)
-    rescue 
-    	puts do_this.inspect
-    end
-    end
+	begin
+    School.create(do_this)
+  rescue 
+  	puts do_this.inspect
+  end
+  end
 end
 #puts data.inspect

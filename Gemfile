@@ -2,8 +2,13 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
+
+# Google Maps stuff
 gem 'geocoder'
 gem 'google-api-client', :require => 'google/api_client'
+
+#Bcrypt
+gem 'bcrypt'
 
 # Use postgresql as the database for Active Record
 gem 'pg'

@@ -1,21 +1,28 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6e5KCfZHZEoJLPDVUn24zM-30hir0CwM&sensor=true"></script>
+<div class="outer">
+  <div class="row">
+    <div class="col-md-12" style="text-align:center"><strong><%= @school.name %></strong></div>
+  </div><br />
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4" id="school-basics">
+      <div><%= @school.address %></div>
+      <div><%= @school.city %>, <%= @school.state %> <%= @school.zip %></div>
+      <div><%= @school.county %> County</div>
+      <div><%= @school.phone_number %></div>
+      <div><%= @school.url %></div>
+      <div><%= @school.latitude %>, <%= @school.longitude %></div>
+      <div><%= link_to 'Edit', edit_school_path(@school) %> | <%= link_to 'Back', root_path %></div>       
+    </div>
 
-<div class="row">
-  <div class="col-lg-6 col-md-6 col-md-6">
-    <div>ID: <%= @school.id %></div>
-    <div><strong><%= @school.name %></strong></div>
-    <div><%= @school.address %></div>
-    <div><%= @school.city %>, <%= @school.state %> <%= @school.zip %></div>
-    <div><%= @school.county %> County</div>
-    <div><%= @school.phone_number %></div>
-    <div><%= @school.url %></div>
-    <div><%= @school.latitude %>, <%= @school.longitude %></div>
-    <div><%= link_to 'Edit', edit_school_path(@school) %> | <%= link_to 'Back', root_path %></div>       
-  </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <div id="map-canvas"></div>
+    </div>
 
-  <div class="col-lg-6 col-md-6 col-md-6">
-    <div id="map-canvas"></div>
-  </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <div id="school-address"></div>
+    </div>
+  </div>  
+
 </div>
 
 <script type="text/javascript">

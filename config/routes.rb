@@ -1,12 +1,16 @@
 Schools::Application.routes.draw do
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   resources :schools, only: [:index, :new, :create, :edit, :update, :show, :destroy]
-  resources :faq, only: [:index]
-  resources :home, only: [:index]
+  resources :users, only:   [:create, :new, :index, :show, :edit, :update, :show]
+  resources :auths, only:   [:create, :new]
+  resources :faq, only:     [:index]
+  resources :home, only:    [:index]
 
-  
+  delete "auths" => "auths#destroy"
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 

@@ -29,7 +29,7 @@ class SchoolsController < ApplicationController
         format.html { redirect_to @school, notice: 'School was successfully created.' }
         format.json { render action: 'show', status: :created, location: @school }
       else
-        flash[:notice] = "The school was unsuccessfully created."
+        flash[:error] = "The school was unsuccessfully created."
         format.html { render action: 'new' }
         format.json { render json: @school.errors, status: :unprocessable_entity }
       end

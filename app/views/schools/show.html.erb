@@ -10,8 +10,13 @@
       <div>Rating: <%= @school.rating %></div>
       <div>Grade Level: <%= @school.grade_level %></div><br />
       <div>
+        Parent's reviews:
         <%= render partial: 'reviews/reviews' %>
-        <%= link_to 'new review', new_school_review_path(params[:id]) %>
+        <% if current_user == nil %>
+          <%= link_to 'sign in', new_auth_path %> to add a new review
+        <% else %>
+          <%= link_to 'new review', new_school_review_path(params[:id]) %>        
+        <% end %>
       </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4">

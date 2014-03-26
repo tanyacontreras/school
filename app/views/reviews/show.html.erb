@@ -2,8 +2,7 @@
 	<div>
 		<p><%= @review.text %></p>
 		<hr />
-    	<%= link_to "edit", edit_school_review_path(school_id: @school.id, id: @review) %>
-		|
-		<%= link_to "home", schools_path(school_id: @school.id) %>
+    	<%= link_to "edit", edit_school_review_path(school_id: @school.id, id: @review) %> |
+			<%= link_to "home", schools_path(school_id: @school.id) %>
 	</div>
 </div>

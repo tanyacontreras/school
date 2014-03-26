@@ -5,7 +5,7 @@
 				<%= f.submit 'submit review' %> <br />
 			<% end %>
 			<br />
-		<%= link_to "return home", school_path(params[:school_id])%>
+			<%= link_to "home", schools_path(school_id: @school.id) %>
 </div>
 
  

@@ -12,7 +12,7 @@ end
 
 #authenticate user
 def create
-  if !(User.where(username_lower: params[:user][:username].downcase).empty?)
+  if !(User.where(username: params[:user][:username].downcase).empty?)
      @user = User.find_by(username: params[:user][:username])
     	if @user.authenticated?(params[:user][:password])
         session[:user_id] = @user.id

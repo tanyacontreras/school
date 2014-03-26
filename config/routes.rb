@@ -1,13 +1,22 @@
 Schools::Application.routes.draw do
 
+  get "reviews/index"
+  get "reviews/show"
+  get "reviews/new"
+  get "reviews/create"
+  get "reviews/edit"
+  get "reviews/update"
+  get "reviews/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :schools, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   resources :users, only:   [:create, :new, :index, :show, :edit, :update, :show]
   resources :auths, only:   [:create, :new]
   resources :faq, only:     [:index]
   resources :home, only:    [:index]
+  resources :schools, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
+    resources :reviews, only: [:index, :new, :create, :update, :edit, :show, :destroy]
+  end
 
   delete "auths" => "auths#destroy"
 

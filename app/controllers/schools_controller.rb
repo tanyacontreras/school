@@ -25,9 +25,11 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       if @school.save
+        flash[:notice] = "The school was successfully created."
         format.html { redirect_to @school, notice: 'School was successfully created.' }
         format.json { render action: 'show', status: :created, location: @school }
       else
+        flash[:notice] = "The school was unsuccessfully created."
         format.html { render action: 'new' }
         format.json { render json: @school.errors, status: :unprocessable_entity }
       end
@@ -44,9 +46,11 @@ class SchoolsController < ApplicationController
 
       respond_to do |format|
       if @school.save
+        flash[:notice] = "The school was successfully updated."
         format.html { redirect_to @school, notice: 'School was successfully updated.' }
         format.json { render action: 'show', status: :created, location: @school }
       else
+        flash[:notice] = "The school was not updated."
         format.html { render action: 'edit' }
         format.json { render json: @school.errors, status: :unprocessable_entity }
       end

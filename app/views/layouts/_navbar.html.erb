@@ -12,7 +12,9 @@
         <% if current_user != nil  %>
             <li><a>welcome <%= current_user  ? current_user.username : "not logged in" %></a></li>
             <li><%= link_to "FAQ", faq_index_path %></li>
+         <% if current_user.username == "tanya" %>   
             <li><%= link_to "add new school", new_school_path %></li>
+          <% end %>
             <li><%= link_to "sign out", auths_path, method: :delete %></li>
         <% end %>
       </ul>

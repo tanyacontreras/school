@@ -9,7 +9,10 @@
       <div>Enrollment: <%= @school.enrollment %></div>
       <div>Rating: <%= @school.rating %></div>
       <div>Grade Level: <%= @school.grade_level %></div><br />
-      <div><%= render partial: 'reviews/reviews' %></div>
+      <div>
+        <%= render partial: 'reviews/reviews' %>
+        <%= link_to 'new review', new_school_review_path(params[:id]) %>
+      </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4">
       <div id="map-canvas"></div>

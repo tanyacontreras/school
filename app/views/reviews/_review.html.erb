@@ -1,0 +1,17 @@
+
+	<% @school.reviews.each do |p| %>
+	<div style="border: 1px dotted orange">	
+		<%= p.text %> <br />
+		<%= p.rating %>
+		<div style="text-align:right">
+			<%= link_to edit_school_review_path(school_id: @school.id, id: p) do %>
+	    	<span class="glyphicon glyphicon-pencil" style="text-align:right"></span>
+			<% end %>
+			<%= link_to school_review_path(school_id: @school.id, id: p), :method => :delete do %>
+	    	<span class="glyphicon glyphicon-trash" ></span>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+
+

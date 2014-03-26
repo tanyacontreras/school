@@ -1,6 +1,8 @@
 require 'bcrypt'
 class User < ActiveRecord::Base
 
+	has_many :reviews
+
   attr_accessor :password
   before_save :hash_stuff
 

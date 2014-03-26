@@ -7,6 +7,8 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    @review = Review.new
+    @school = School.find(params[:school_id])
   end
 
   def create

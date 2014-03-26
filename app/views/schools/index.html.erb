@@ -2,7 +2,9 @@
 
 <div class="container">
 <%= form_tag schools_path, :method => 'get' do  %>
-  <div><%= text_field_tag :zip, params[:zip], :placeholder => "enter zip code"%> <%= submit_tag 'Search' %></div>
+  <div><%= text_field_tag :zip, params[:zip], :placeholder => "enter zip code"%>
+       <%= submit_tag 'Search' %>
+  </div>
 <% end %>
 
 <br />

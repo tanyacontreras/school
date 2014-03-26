@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325214636) do
+ActiveRecord::Schema.define(version: 20140325235809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reviews", force: true do |t|
+    t.string   "text"
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "school_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["school_id"], name: "index_reviews_on_school_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "schools", force: true do |t|
     t.string   "name"
@@ -42,7 +54,6 @@ ActiveRecord::Schema.define(version: 20140325214636) do
     t.string   "hashed_password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username_lower"
   end
 
 end

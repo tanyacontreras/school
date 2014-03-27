@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
+gem 'rails_12factor'
+
 # Google Maps stuff
 gem 'geocoder'
 gem 'google-api-client', :require => 'google/api_client'

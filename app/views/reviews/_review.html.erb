@@ -1,6 +1,6 @@
 
 <div style="border: 1px dotted orange"> 
- <%= review.text %>
+ <%= truncate(review.text, length: 50) %>
  <!-- <li><%#= r.rating %> </li> -->
     <% if current_user != nil && current_user.is_admin == true %>
     <div style="text-align:right">

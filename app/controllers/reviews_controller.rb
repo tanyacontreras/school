@@ -27,12 +27,29 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
+    @school = School.find(params[:school_id])
   end
 
-  def update
-  end
+    def update
+      @school = School.find(params[:school_id])
+      @review = @school.reviews.find(params[:id])
+        if @review.update(review_params)
+          redirect_to school_path(:id => @review.school_id), notice: 'Your post was successfully updated.'
+        else
+          render action: 'edit'
+        end
+    end
 
   def destroy
+    @review = Review.find(params[:id])
+    if @review.destroy
+      flash[:notice] = "Your review was successfully deleted."
+      redirect_to school_path(:id => @review.school_id)
+    else 
+      flash[:error] = "Your review was unsuccessfully deleted."
+      redirect_to @review
+    end
   end
 
   private

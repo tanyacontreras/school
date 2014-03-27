@@ -7,8 +7,11 @@ gem 'rails', '4.0.2'
 gem 'geocoder'
 gem 'google-api-client', :require => 'google/api_client'
 
-#Bcrypt
+#Bcrypt - Authentication
 gem 'bcrypt'
+
+#Pagination
+gem 'kaminari'
 
 # Use postgresql as the database for Active Record
 gem 'pg'

@@ -1,13 +1,19 @@
 
-<div style="border: 1px dotted orange">    
-     <%= review.text %>
-     <!-- <li><%#= r.rating %> </li> -->
-      <div style="text-align:right">
-           <%= link_to edit_school_review_path(school_id: @school.id, id: review) do %>
-          <span class="glyphicon glyphicon-pencil" style="text-align:right"></span>
-           <% end %>
-           <%= link_to school_review_path(school_id: @school.id, id: review), :method => :delete do %>
-          <span class="glyphicon glyphicon-trash" ></span>
-           <% end %>
-      </div>
+<div style="border: 1px dotted orange"> 
+ <%= review.text %>
+ <!-- <li><%#= r.rating %> </li> -->
+    <% if current_user != nil && current_user.is_admin == true %>
+    <div style="text-align:right">
+        <%= link_to school_review_path(school_id: @school.id, id: review) do %>
+        <span class="glyphicon glyphicon-plus" style="text-align:right"></span>
+         <% end %>
+         <%= link_to edit_school_review_path(school_id: @school.id, id: review) do %>
+        <span class="glyphicon glyphicon-pencil" style="text-align:right"></span>
+         <% end %>
+         <%= link_to school_review_path(school_id: @school.id, id: review), :method => :delete do %>
+        <span class="glyphicon glyphicon-trash" ></span>
+    <% end %>
+    </div>
+    <% end %>
 </div>
+

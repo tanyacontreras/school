@@ -1,16 +1,10 @@
+<div class="container">
+	<%= form_for [@school, @review] do |review| %>
+		<%= review.text_area :text, placeholder: "details" %><br />
+		<%= review.submit 'update review', :class => "btn btn-info" %> <br />
+		<% end %>
+	<br />
+	<%= link_to "return home", schools_path(:id)%>
+</div>
 
 
-
-
-<%= params %>
-			<%= form_for [@school, @review] do |review| %>
-				<%= review.text_field :title %><br />
-				<%= review.text_area :text, placeholder: "details" %><br />
-				<%= review.submit 'edit event', :class => "btn btn-info" %> <br />
-			<% end %>
-			<br />
-		<%= link_to "return home", schools_path(:id)%>
-
-
-
- 

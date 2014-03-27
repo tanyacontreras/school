@@ -6,14 +6,15 @@
   </div><br />
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4" id="school-basics">
+      <div>Type: <%= @school.school_type %></div>
       <div>Enrollment: <%= @school.enrollment %></div>
       <div>Rating: <%= @school.rating %></div>
       <div>Grade Level: <%= @school.grade_level %></div><br />
-      <div>
-        Parent's reviews:
-        <%= render partial: 'reviews/reviews' %>
+      <div id="reviews">
+        Community reviews: <%= @school.reviews.count %>
+        <%= render partial: 'reviews/reviews' %><br />
         <% if current_user == nil %>
-          <%= link_to 'sign in', new_auth_path %> to add a new review
+          <%= link_to 'Sign In', new_auth_path %> to add a new review
         <% else %>
           <%= link_to 'new review', new_school_review_path(params[:id]) %>        
         <% end %>

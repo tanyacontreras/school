@@ -2,14 +2,17 @@
 
 <div class="outer">
   <div class="row">
-    <div class="col-md-12" style="text-align:center"><strong><%= @school.name %></strong></div>
+    <div class="col-md-12 col-lg-12 col-sm-12 font-style-two"><%= @school.name %></div>
   </div><br />
   <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4" id="school-basics">
-      <div>Type: <%= @school.school_type %></div>
-      <div>Enrollment: <%= @school.enrollment %></div>
-      <div>Rating: <%= @school.rating %></div>
-      <div>Grade Level: <%= @school.grade_level %></div><br />
+    <div class="col-lg-3 col-md-3 col-sm-3" id="school-basics">
+      <%= image_tag("books.jpg") %>
+      <div class="chalkboard-basic">
+        <div>Type: <%= @school.school_type %></div>
+        <div>Enrollment: <%= @school.enrollment %></div>
+        <div>Rating: <%= @school.rating %></div>
+        <div>Grade Level: <%= @school.grade_level %></div><br />
+      </div>
       <div id="reviews">
         Community reviews: <%= @school.reviews.count %>
         <%= render partial: 'reviews/reviews' %><br />
@@ -20,15 +23,18 @@
         <% end %>
       </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4">
+    <div class="col-lg-5 col-md-5 col-sm-5" style="padding-left: 10%;">
       <div id="map-canvas"></div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4" id="school-address">
-      <div><%= @school.address %></div>
-      <div><%= @school.city %>, <%= @school.state %> <%= @school.zip %></div>
-      <div><%= @school.county %> County</div>
-      <div><%= @school.phone_number %></div>
-      <div><%= @school.url %></div>
+      <%= image_tag("apple.png", :alt => "Welcome!") %>
+      <div class="chalkboard-address">
+        <div><%= @school.address %></div>
+        <div><%= @school.city %>, <%= @school.state %> <%= @school.zip %></div>
+        <div><%= @school.county %> County</div>
+        <div><%= @school.phone_number %></div>
+        <div><%= @school.url %></div>
+      </div>
     </div>
   </div>  
 

@@ -59,9 +59,9 @@ function initialize() {
 
 <% if @schools.count != 0 %>
   <% @schools.each do |school| %>
-    <% if school.rating >= "8" %>
+    <% if school.rating >= 8 %>
       school_array.push([new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>), star]);
-    <% elsif school.rating <= "4" %>
+    <% elsif school.rating <= 4 %>
       school_array.push([new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>), red]);
     <% else %>
       school_array.push([new google.maps.LatLng(<%= school.latitude %>, <%= school.longitude %>), blue]);

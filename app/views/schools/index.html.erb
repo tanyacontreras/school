@@ -47,6 +47,7 @@
     </div>
   <% end %>
 </div>
+
 </div>
 
 <script type="text/javascript"> 
@@ -61,7 +62,7 @@ function initialize() {
   var school_array_low = [];
   var star = "<%= asset_path('star.png') %>";
   var blue = "<%= asset_path('blue.png') %>";
-  var red = "<%= asset_path('red.png') %>";
+  var red = "<%= asset_path('red.jpg') %>";
 
 <% if @schools.count != 0 %>
   <% @schools.each do |school| %>
@@ -96,7 +97,7 @@ map.set('styles', [
     ]
   }, {
     featureType: 'poi.school',
-    elementType: 'labels',
+    elementType: 'labels.icon',
     stylers: [
       { hue: '#ff0000' },
       { lightness: -5 }, 

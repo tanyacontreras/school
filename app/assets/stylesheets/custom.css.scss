@@ -4,14 +4,14 @@
 
 #logo {
 	font-family: 'Spicy Rice', cursive;
-	font-size: 30px;
-	color: #ffff82;
+	font-size: 25px;
+	color: #2981cf;
 }
 
 .font-style {
 	font-family: 'Spicy Rice', cursive;
-	font-size: 20px;
-	color: #ffff82;
+	font-size: 16px;
+	color: #573333;
 }
 
 #nav {
@@ -49,7 +49,7 @@
 .grass {
 	background-color: #47a447;
 	width: 100%;
-	height: 360px;
+	height: 125px;
 	margin-top: -30px;
 }
 
@@ -59,8 +59,8 @@
 }
 
 #map-canvas {
-	height: 500px;
-	width:  500px;
+	height: 400px;
+	width:  400px;
 	margin: 0 auto;
 	border: 10px solid #b2eded;
 }
@@ -95,9 +95,7 @@
 }
 
 .link {
-  color: orange;
   text-decoration: none;
-  color: #777777;
 }
 
 footer {

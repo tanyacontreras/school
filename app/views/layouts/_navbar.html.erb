@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default" role="navigation" id="nav">
   <div class="container-fluid">
     <div class="navbar-header logo link">
-      <li><%= link_to "schools.411", root_path, :class => "navbar-brand ", :id => "logo" %></li>
+        <div><%= link_to "schools-411", root_path, :class => "navbar-brand", :id => "logo" %></div>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right font-style">
+    <div class="collapse navbar-collapse  font-style" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right link">
         <% if current_user == nil %>
             <li><%= link_to "sign in", new_auth_path %></li>
             <li><%= link_to "sign up", new_user_path, :class => "active" %></li>

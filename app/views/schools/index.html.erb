@@ -9,37 +9,37 @@
 
 <br />
   <% if @schools.count == 0 %>
-  <div class="row">
-    <div class="col-lg-12 col-md-12, col-sm-12">
-      No schools were found for Zip Code: <%= label_tag :zip, params[:zip] %>. 
+    <div class="row">
+      <div class="col-lg-12 col-md-12, col-sm-12">
+        No schools were found for Zip Code: <%= label_tag :zip, params[:zip] %>. 
+      </div>
     </div>
-  </div>
   <% else %>
-  <div class="col-lg-6 col-md-6">
-  <h5><%= @schools.count %> schools found for 
-    <%= label_tag :zip, params[:zip] %>
-    (<%= @schools.first.county %> County)
-  </h5>
-  <br />
-    <% @schools.each do |school| %>
-      <div><strong><%= school.name %></strong></div>
-      <div><%= school.school_type %> - <%= school.grade_level %></div>
-      <div><%= school.address %></div>
-      <div><%= school.city %>, <%= school.state %> <%= school.zip %></div>
-      <div>Test Rating: <%= school.rating %></div>
-      <div><%= link_to 'Details', school_path(school) %>
-        <% if current_user != nil && current_user.is_admin == true %>
-        | <%= link_to 'Edit', edit_school_path(school) %> 
-        <% end %>
-      </div> 
-      <hr/>
+    <div class="col-lg-6 col-md-6">
+      <h5><%= @schools.count %> schools found for 
+        <%= label_tag :zip, params[:zip] %>
+        (<%= @schools.first.county %> County)
+      </h5>
+      <br />
+      <% @schools.each do |school| %>
+        <div><strong><%= school.name %></strong></div>
+        <div><%= school.school_type %> - <%= school.grade_level %></div>
+        <div><%= school.address %></div>
+        <div><%= school.city %>, <%= school.state %> <%= school.zip %></div>
+        <div>Test Rating: <%= school.rating %></div>
+        <div><%= link_to 'Details', school_path(school) %>
+          <% if current_user != nil && current_user.is_admin == true %>
+          | <%= link_to 'Edit', edit_school_path(school) %> 
+          <% end %>
+        </div> 
+        <hr/>
       <% end %>
     </div>
   
-  <div class="col-lg-6 col-md-6 col-sm-6">
-    <div id="map-canvas"></div>
-  </div>
-    <% end %>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <div id="map-canvas"></div>
+    </div>
+  <% end %>
 </div>
 </div>
 

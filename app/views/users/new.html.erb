@@ -1,10 +1,12 @@
 <div class="container">
-	<div>
-		<h4>Create a New User</h4>
-		<%=form_for @user do |f|%>
-			<%=f.text_field :username, placeholder:"Enter your username"%><br />
-			<%=f.password_field :password, placeholder:"Enter password" %><br />
-			<%=f.submit "Create New User" %>
-		<% end %>
+	<div class="row">
+		<h4 class="font-style-two">Create a New Profile</h4>
+		<div class="col-lg-4 col-md-4 col-sm-4" style="margin-left:35%">
+			<%= form_for @user do |user|%>
+			<%= user.text_field :username, :placeholder => "Your username", :class => "form-control login-field" %><br />
+			<%= user.password_field :password, :placeholder => "Your password", :class => "form-control login-field" %><br />
+			<%= user.submit "Create", :class => "btn btn-success search-button", :style => "margin-left:35%; margin-top:0%;" %>
+			<%end%>
+		</div>
 	</div>
 </div>

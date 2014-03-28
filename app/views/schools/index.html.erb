@@ -9,7 +9,7 @@
 
 <br />
   <% if @schools.count == 0 %>
-    <div class="row">
+    <d  iv class="row">
       <div class="col-lg-12 col-md-12, col-sm-12">
         No schools were found for Zip Code: <%= label_tag :zip, params[:zip] %>. 
       </div>
@@ -38,14 +38,18 @@
   
     <div class="col-lg-6 col-md-6 col-sm-6">
       <div id="map-canvas"></div>
-      <div id="legend">Legend with icons</div>
-      <ul>
-        <li>8-10: Star</li>
-        <li>5-7: Blue</li>
-        <li>1-4: Red</li>
-      </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6"></div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <div id="legend"> 
+        <span><%= image_tag("star.png") %> 10 - 8</span>
+        <span><%= image_tag("blue.png") %> 7 - 4</span>
+        <span><%= image_tag("red.png") %> 0 - 3</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 </div>

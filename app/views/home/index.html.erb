@@ -8,7 +8,7 @@
 		<div class="font-style", style="color:#2981cf"> search for school details...</div>
 		<%= form_tag schools_path, :method => 'get' do  %>
 	  <%= text_field_tag :zip, params[:zip], :id => "search", :class => "form-control search-field", :placeholder => "enter zip code"%> <br />
-	  <%= submit_tag 'Search', :class => "btn btn-info" %>
+	  <%= submit_tag 'Search', :class => "btn btn-info search-button" %>
 	<% end %>
 	</div>
 	</div>

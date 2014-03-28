@@ -1,7 +1,6 @@
 
-<div style="border: 1px dotted orange"> 
+<div class="review"> 
  <%= truncate(review.text, length: 50) %>
- <!-- <li><%#= r.rating %> </li> -->
     <% if current_user != nil && current_user.is_admin == true %>
     <div style="text-align:right">
         <%= link_to school_review_path(school_id: @school.id, id: review) do %>

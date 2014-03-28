@@ -1,12 +1,16 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6e5KCfZHZEoJLPDVUn24zM-30hir0CwM&sensor=true"></script>
 
 <div class="container" style="font-size:12px">
-  <%= form_tag schools_path, :method => 'get' do  %>
-    <div><%= text_field_tag :zip, params[:zip], :placeholder => "enter zip code"%>
-         <%= submit_tag 'Search' %>
-    </div>
+<div class="row">
+  <div class="col-sm-6 col-md-6 col-lg-6"> 
+    <div class="font-style", style="color:#2981cf"></div>
+    <%= form_tag schools_path, :method => 'get' do  %>
+    <%= text_field_tag :zip, params[:zip], :id => "search", :class => "form-control search-field", :placeholder => "enter zip code"%> <br />
+    <%= submit_tag 'Search', :class => "btn btn-success search-button" %>
   <% end %>
-
+  </div>
+  <div class="col-sm-6 col-md-6 col-lg-6"> </div>
+</div>
 <br />
   <% if @schools.count == 0 %>
     <d  iv class="row">

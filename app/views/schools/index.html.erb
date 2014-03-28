@@ -1,6 +1,6 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6e5KCfZHZEoJLPDVUn24zM-30hir0CwM&sensor=true"></script>
 
-<div class="container">
+<div class="container" style="font-size:12px">
   <%= form_tag schools_path, :method => 'get' do  %>
     <div><%= text_field_tag :zip, params[:zip], :placeholder => "enter zip code"%>
          <%= submit_tag 'Search' %>
@@ -38,7 +38,7 @@
   
     <div class="col-lg-6 col-md-6 col-sm-6">
       <div id="map-canvas"></div>
-      <div id="legend">Legend</div>
+      <div id="legend">Legend with icons</div>
       <ul>
         <li>8-10: Star</li>
         <li>5-7: Blue</li>
@@ -61,8 +61,8 @@ function initialize() {
   var school_array_med = [];
   var school_array_low = [];
   var star = "<%= asset_path('star.png') %>";
+  var red = "<%= asset_path('red.png') %>";
   var blue = "<%= asset_path('blue.png') %>";
-  var red = "<%= asset_path('red.jpg') %>";
 
 <% if @schools.count != 0 %>
   <% @schools.each do |school| %>

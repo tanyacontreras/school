@@ -6,17 +6,17 @@
     <div class="collapse navbar-collapse  font-style" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right link">
         <% if current_user == nil %>
-            <li><%= link_to "sign in", new_auth_path %></li>
-            <li><%= link_to "sign up", new_user_path, :class => "active" %></li>
-            <li><%= link_to "FAQ", faq_index_path %></li>
+            <li><%= link_to "sign in", new_auth_path, :style => "color:blue" %></li>
+            <li><%= link_to "sign up", new_user_path, :class => "active", :style => "color:blue" %></li>
+            <li><%= link_to "FAQ", faq_index_path, :style => "color:blue" %></li>
         <% end %>
         <% if current_user != nil  %>
-            <li><a>welcome <%= current_user  ? current_user.username : "not logged in" %>!</a></li>
-            <li><%= link_to "FAQ", faq_index_path %></li>
+            <li><a style="color:blue">welcome <%= current_user  ? current_user.username : "not logged in" %>!</a></li>
+            <li><%= link_to "FAQ", faq_index_path, :style => "color:blue" %></li>
          <% if current_user.is_admin == true %>   
-            <li><%= link_to "add new school", new_school_path %></li>
+            <li><%= link_to "add new school", new_school_path, :style => "color:blue" %></li>
           <% end %>
-            <li><%= link_to "sign out", auths_path, method: :delete %></li>
+            <li><%= link_to "sign out", auths_path, method: :delete, :style => "color:blue" %></li>
         <% end %>
       </ul>
     </div>

@@ -62,13 +62,18 @@
 	height: 500px;
 	width:  500px;
 	margin: 0 auto;
-	border: 3px solid #b2eded;
+	border: 10px solid #b2eded;
 }
 
- #legend {
-    background: white;
-    padding: 10px;
-  }
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  /*border: 3px solid #000;*/
+  width: 500px;
+  margin: 0 auto;	
+}
 
 .row {
 	font-family: Helvetica;
